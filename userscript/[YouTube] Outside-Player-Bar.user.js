@@ -1,17 +1,19 @@
 // ==UserScript==
-// @name         [YouTube] Outside-Player-Bar [20260102] v1.0.2
-// @namespace    https://github.com/1natsu172/Outside-YouTube-Player-Bar
+// @name         [YouTube] Outside-Player-Bar [20260102] v1.2.0
+// @namespace    https://github.com/0-V-linuxdo/YouTube-Outside-Player-Bar
+// @license      MIT
 // @description  Display YouTube's player bar outside the video.
-// @icon         data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAACXBIWXMAAAWJAAAFiQFtaJ36AAACy0lEQVR42u3b3ZGbMBhG4deZ3FIBDcgN0ABugAbcADRgCkANoAJEA2oAGqCBpQHuM0MBzkXGe5HJbPyXyQidUwGGZ/gksXswxlxFyfaNWwAAAgABgABAACAAEAAIAAQAAgABgABAACAAEAAIAAQAAgABgABAACAAEAAIAP87Y4yaplFRFDzVFAGcTifVdS3vvfq+V57nPN1UR0BZlhrHUU3TKMsynnKqa4C6rhVCUFVVPOlUF4F5nqvrOnnvWR+kvAsoikLee3Vdx/og5W1gVVUKIahpGp5+qucAWZaprmuN46iyLAGQanmeq+97ee9ljAFAqhVFoRCCuq5LbtsIgN/WB9M06Xw+AyDVsizT5XLROI5JbBsB8MX6wHsv7/2ut40AuGN9sOdjZQDcWV3XmqZpd8fKAHhwfdB1nUIIu1kfAOCJjDG7+ewMgBcqy/LzWDnW9QEA3jAWYv7sDIA3bhtvn51jehsA4B9sG4/HIwBSLYSgj4+PaK73O4/sPc3zLOec5nmO6roB8GLruso5pxBClNcPgBdyzsl7r23bov0NAHiiaZpkrdW6rtH/FgA80LIsstZGN+cB8GLbtqnvew3DsLvfBoC/NAyD+r6Pes4D4MltXdu2u5jzAHhwW9e27a7mPADunPO3131KAUC/jm+ttbud8wD4Ys5ba7UsS7L3IEkA67rKWqtpmpJ/+yUF4DbnYz++BcCTc945t/ttHQD+MOdj/EwLgDe87q210X6mBcAL7eEzLQAezHv/OeuZ8/d3MMZcuQ3pxh+FAoAAQAAgABAACAAEAAIAAYAAQAAgABAACAAEAAIAAYAAQAAgABAACAAEAAIAAYAAQAAgAFBEHa7XK/8dzBuAAEAAIAAQAAgABAACAAGA9t7hh8RJIG8AAgABgABAACAAEAAIAAQAAgABgABAACAAEAAIAAQAAgABgABAAKCY+wnlPORj5a0IYQAAAABJRU5ErkJggg==
 //
-// @version      [20260102] v1.0.2
-// @update-log   [20260102] v1.0.2 - 添加脚本 icon
+// @version      [20260102] v1.2.0
+// @update-log   [20260102] v1.2.0 - 修复 YouTube 新 UI 下按钮垂直位置偏下
 //
 // @match        https://*.youtube.com/*
 // @match        https://youtube.com/*
 //
 // @run-at       document-start
 // @grant        none
+//
+// @icon         data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAACXBIWXMAAAWJAAAFiQFtaJ36AAACy0lEQVR42u3b3ZGbMBhG4deZ3FIBDcgN0ABugAbcADRgCkANoAJEA2oAGqCBpQHuM0MBzkXGe5HJbPyXyQidUwGGZ/gksXswxlxFyfaNWwAAAgABgABAACAAEAAIAAQAAgABgABAACAAEAAIAAQAAgABgABAACAAEAAIAP87Y4yaplFRFDzVFAGcTifVdS3vvfq+V57nPN1UR0BZlhrHUU3TKMsynnKqa4C6rhVCUFVVPOlUF4F5nqvrOnnvWR+kvAsoikLee3Vdx/og5W1gVVUKIahpGp5+qucAWZaprmuN46iyLAGQanmeq+97ee9ljAFAqhVFoRCCuq5LbtsIgN/WB9M06Xw+AyDVsizT5XLROI5JbBsB8MX6wHsv7/2ut40AuGN9sOdjZQDcWV3XmqZpd8fKAHhwfdB1nUIIu1kfAOCJjDG7+ewMgBcqy/LzWDnW9QEA3jAWYv7sDIA3bhtvn51jehsA4B9sG4/HIwBSLYSgj4+PaK73O4/sPc3zLOec5nmO6roB8GLruso5pxBClNcPgBdyzsl7r23bov0NAHiiaZpkrdW6rtH/FgA80LIsstZGN+cB8GLbtqnvew3DsLvfBoC/NAyD+r6Pes4D4MltXdu2u5jzAHhwW9e27a7mPADunPO3131KAUC/jm+ttbud8wD4Ys5ba7UsS7L3IEkA67rKWqtpmpJ/+yUF4DbnYz++BcCTc945t/ttHQD+MOdj/EwLgDe87q210X6mBcAL7eEzLQAezHv/OeuZ8/d3MMZcuQ3pxh+FAoAAQAAgABAACAAEAAIAAYAAQAAgABAACAAEAAIAAYAAQAAgABAACAAEAAIAAYAAQAAgAFBEHa7XK/8dzBuAAEAAIAAQAAgABAACAAGA9t7hh8RJIG8AAgABgABAACAAEAAIAAQAAgABgABAACAAEAAIAAQAAgABgABAAKCY+wnlPORj5a0IYQAAAABJRU5ErkJggg==
 // ==/UserScript==
 
 // ================================================
@@ -98,10 +100,16 @@
 .oypb-toggleExtensionButton{
   text-align:center !important;
   vertical-align:top;
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  line-height:0 !important;
+  align-self:center !important;
   overflow:visible !important;
 }
 .oypb-toggleExtensionButton>svg{
   vertical-align:middle;
+  display:block;
   width:18px;
   height:16px;
   transition:none !important;
@@ -161,6 +169,12 @@
 .${CLASS.isOutsidePlayerBar} .ytp-chrome-bottom{
   transform:translate3d(0, var(--oypb-player-bar-height), 0);
   transition:opacity var(--oypb-transition-out), transform var(--oypb-transition-out) !important;
+}
+.${CLASS.isOutsidePlayerBar} #movie_player .ytp-chrome-bottom,
+.${CLASS.isOutsidePlayerBar} #movie_player .ytp-chrome-bottom .ytp-chrome-controls{
+  opacity:1 !important;
+  visibility:visible !important;
+  pointer-events:auto !important;
 }
 .${CLASS.isOutsidePlayerBar}.${CLASS.isVisiblePlayerBar} .ytp-chrome-bottom .ytp-left-controls::before,
 .${CLASS.isOutsidePlayerBar}.${CLASS.isVisiblePlayerBar} .ytp-chrome-bottom .ytp-right-controls::after{
