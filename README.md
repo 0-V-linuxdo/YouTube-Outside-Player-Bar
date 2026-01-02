@@ -1,4 +1,4 @@
-# [YouTube] Outside-Player-Bar（Userscirpt）
+# [YouTube] Outside-Player-Bar（Userscript）
 
 ## 简介：
 
