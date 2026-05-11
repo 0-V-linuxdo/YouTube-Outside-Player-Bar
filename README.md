@@ -1,24 +1,27 @@
-# [YouTube] Outside-Player-Bar（Userscript）
+# [YouTube] Outside-Player-Bar <a href="https://raw.githubusercontent.com/0-V-linuxdo/YouTube-Outside-Player-Bar/main/userscript/%5BYouTube%5D%20Outside-Player-Bar.user.js"><img align="right" alt="安装脚本" src="https://img.shields.io/static/v1?label=&message=%E5%AE%89%E8%A3%85%E8%84%9A%E6%9C%AC&color=2ea44f&style=for-the-badge"></a>
 
-## 简介：
+把 YouTube 控制栏移到视频下方，减少遮挡。
 
-- **背景**：将Chrome 扩展：[Outside-YouTube-Player-Bar (v3.0.10)](https://github.com/1natsu172/Outside-YouTube-Player-Bar/releases/tag/v3.0.10) 的核心功能移植为油猴脚本!
-- **功能**：把 YouTube 播放器的控制栏（进度条/按钮区）移到视频画面的下方。
+移植自插件 [Outside-YouTube-Player-Bar v3.0.10](https://github.com/1natsu172/Outside-YouTube-Player-Bar/releases/tag/v3.0.10)。
 
-## 安装
+## 功能
 
-1. 安装 Violentmonkey（或其他用户脚本管理器）。
-2. 在脚本管理器中新建脚本，把 `[YouTube] Outside-Player-Bar.user.js` 全部内容粘贴进去并保存。
-3. 打开任意 YouTube 视频页（`/watch` 或 `/<user>/live`）即可生效
+- 控制栏外置到视频下方。
+- 右侧按钮一键切换外置/内置。
+- 自动记住开关状态。
+- 支持 `/watch` 和频道 `/live` 页面。
+- 支持 YouTube 站内跳转。
 
 ## 使用
 
-- 视频页右下角控制栏会注入一个切换按钮：
-  - Tooltip 显示 `Inside player bar`：点击后切回“控制栏在视频内”模式。
-  - Tooltip 显示 `Outside player bar`：点击后切回“控制栏在视频外”模式。
-- 默认启用“Outside player bar”模式；开关状态会写入 `localStorage`（同一浏览器内持久化）。
+按钮位于播放器右侧控制区。
 
-## 备注
+- 图标朝上：外置模式，点击切回内置。
+- 图标朝下：内置模式，点击切到外置。
+- 默认启用外置模式。
 
-- YouTube 是 SPA，脚本会监听站内导航事件自动重新注入按钮/样式。
-- 进入/退出全屏时会自动切换一次模式（与原扩展行为一致）。
+## 全屏（新功能）
+
+- 外置模式开启：全屏时保持控制栏可见。
+- 外置模式关闭：全屏跟随 YouTube 默认行为。
+- 进入/退出全屏不会改变按钮状态。
